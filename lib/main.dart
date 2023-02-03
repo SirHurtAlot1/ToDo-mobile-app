@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:todo/widgets/cirlce_icon_button.dart';
-import 'styles.dart' as styles;
+import 'assets/app_colors.dart';
+import 'views/button_with_counter.dart';
+import 'views/list_switch_panel.dart';
+import 'widgets/greeting_card.dart';
 
 void main() {
   runApp(const ToDo());
@@ -14,28 +17,28 @@ class ToDo extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: styles.mainBackgroundColor,
+        backgroundColor: AppColors.scaffold.background,
         extendBodyBehindAppBar: false,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          actions: const [
+          actions: [
             Padding(
-              padding: EdgeInsets.only(top: 5),
+              padding: const EdgeInsets.only(top: 5),
               child: CircleIconButton(
                 iconData: Icons.notifications,
                 borderRadius: 30,
-                backgroundColor: styles.appbarButtonBackgroundColor,
-                iconColor: styles.appbarIconColor,
+                backgroundColor: AppColors.appbar.buttonBackground,
+                iconColor: AppColors.appbar.icon,
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 5, right: 7.5),
+              padding: const EdgeInsets.only(top: 5, right: 7.5),
               child: CircleIconButton(
                 iconData: Icons.dark_mode,
                 borderRadius: 30,
-                backgroundColor: styles.appbarButtonBackgroundColor,
-                iconColor: styles.appbarIconColor,
+                backgroundColor: AppColors.appbar.buttonBackground,
+                iconColor: AppColors.appbar.icon,
               ),
             )
           ],
@@ -44,68 +47,10 @@ class ToDo extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
             children: [
-              Container(
-                  alignment: Alignment.centerLeft,
-                  margin: const EdgeInsets.only(top: 70),
-                  child: const Text(
-                    'Good\nMorning',
-                    style: styles.greetingsTextStyle,
-                  )),
-              Padding(
-                padding: const EdgeInsets.only(top: 40),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text(
-                          "Today's Monday",
-                          style: styles.mainInformationTextStyle,
-                        ),
-                        Text(
-                          'Dec 12, 2022',
-                          style: styles.secondInformationTextStyle,
-                        )
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: const [
-                        Text(
-                          '75% Done',
-                          style: styles.mainInformationTextStyle,
-                        ),
-                        Text(
-                          'Completed Tasks',
-                          style: styles.secondInformationTextStyle,
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ),
+              const GreetingsCard(),
               Padding(
                 padding: const EdgeInsets.only(top: 10),
-                child: Row(
-                  children: [
-                    Column(
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.white),
-                                child: const Text('12')),
-                            const Text('Tasks')
-                          ],
-                        )
-                      ],
-                    ),
-                    Column()
-                  ],
-                ),
+                child: ListSwitchPanel(),
               )
             ],
           ),
